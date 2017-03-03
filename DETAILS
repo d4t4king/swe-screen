@@ -1,0 +1,9 @@
+MOD_NAME=screen
+MOD_VERSION=0.0.1
+SCREEN_VERSION=4.5.1
+MOD_LONG_NAME="[3.1] screen v${MOD_VERSION}"
+MOD_INFO="screen for Smoothwall Express"
+MOD_DIR=/var/smoothwall/mods/screen
+MOD_FORUM=
+MOD_AUTHOR=dataking
+MOD_MAINTAINER=dataking
