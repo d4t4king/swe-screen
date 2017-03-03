@@ -1,0 +1,80 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+use feature qw( switch );
+use Term::ANSIColor;
+use Cwd;
+
+my $arch = `/bin/uname -m`;
+chomp($arch);
+print colored("Found ARCH: $arch \n", "bold cyan");
+
+my $cwd = getcwd();
+my $mods_dir = "/var/smoothwall/mods";
+my $modsa_dir = "/var/smoothwall/mods-available";
+
+given ($cwd) {
+	when ('/root/swe-screen') {
+		# in dev mode
+		print colored("Looks like we're in the dev directory.  Would you like to install this mod to your smoothie?\n", "bold cyan");
+		my $ans = readline();
+		chomp($ans);
+		if ($ans =~ /^[Yy](?:es)?$/) {
+			print colored("Creating mod directory....\n", "bold cyan");
+			system("/bin/mkdir -p $modsa_dir/screen") unless (-d "$modsa_dir/htop");
+			print colored("Copying files....\n", "bold cyan");
+			system("/bin/cp -rf * $modsa_dir/screen/");
+			print colored("Setting up symlinks....\n", "bold cyan");
+			chdir("$modsa_dir/screen/bin");
+			system("/bin/ln -snf screen.$arch htop");
+			chdir($mods_dir);
+			system("/bin/ln -snf ../mods-available/screen htop");
+			print colored("To complete set and use screen right now, issue the following command: \n", "bold cyan");
+			print colored("\tsource /etc/bashrc\n", "bold green");
+			print colored("screen is now ready to use with your smoothie.\n", "bold cyan");
+		} else {
+			print colored("Quitting!\n", "bold red");
+		}
+	}
+	when ("/tmp/screen") {
+		print colored("Looks like we're in the tmp directory.  Would you like to install this mod to your smoothie?\n", "bold cyan");
+		my $ans = readline();
+		chomp($ans);
+		if ($ans =~ /^[Yy](?:es)?$/) {
+			print colored("Creating mod directory....\n", "bold cyan");
+			system("/bin/mkdir -p $modsa_dir/screen") unless (-d "$modsa_dir/htop");
+			print colored("Copying files....\n", "bold cyan");
+			system("/bin/cp -rf * $modsa_dir/screen/");
+			print colored("Setting up symlinks....\n", "bold cyan");
+			chdir("$modsa_dir/screen/bin");
+			system("/bin/ln -snf screen.$arch htop");
+			chdir($mods_dir);
+			system("/bin/ln -snf ../mods-available/screen htop");
+			print colored("To complete set and use screen right now, issue the following command: \n", "bold cyan");
+			print colored("\tsource /etc/bashrc\n", "bold green");
+			print colored("screen is now ready to use with your smoothie.\n", "bold cyan");
+		} else {
+			print colored("Quitting!\n", "bold red");
+		}
+	}
+	when ("$modsa_dir/screen") {
+		print colored("Looks like we're in the mods-available directory, so most of the work is already done.  Would you like to install this mod to your smoothie?\n", "bold cyan");
+		my $ans = readline();
+		chomp($ans);
+		if ($ans =~ /^[Yy](?:es)?$/) {
+			print colored("Setting up symlinks....\n", "bold cyan");
+			chdir("$modsa_dir/screen/bin");
+			system("/bin/ln -snf screen.$arch htop");
+			chdir($mods_dir);
+			system("/bin/ln -snf ../mods-available/screen htop");
+			print colored("To complete set and use screen right now, issue the following command: \n", "bold cyan");
+			print colored("\tsource /etc/bashrc\n", "bold green");
+			print colored("screen is now ready to use with your smoothie.\n", "bold cyan");
+		} else {
+			print colored("Quitting!\n", "bold red");
+		}
+	}
+	default { die colored("Unrecognized install path! $cwd \n", "bold red"); exit 1; }
+}
