@@ -23,14 +23,14 @@ given ($cwd) {
 		chomp($ans);
 		if ($ans =~ /^[Yy](?:es)?$/) {
 			print colored("Creating mod directory....\n", "bold cyan");
-			system("/bin/mkdir -p $modsa_dir/screen") unless (-d "$modsa_dir/htop");
+			system("/bin/mkdir -p $modsa_dir/screen") unless (-d "$modsa_dir/screen");
 			print colored("Copying files....\n", "bold cyan");
 			system("/bin/cp -rf * $modsa_dir/screen/");
 			print colored("Setting up symlinks....\n", "bold cyan");
 			chdir("$modsa_dir/screen/bin");
-			system("/bin/ln -snf screen.$arch htop");
+			system("/bin/ln -snf screen.$arch screen");
 			chdir($mods_dir);
-			system("/bin/ln -snf ../mods-available/screen htop");
+			system("/bin/ln -snf ../mods-available/screen screen");
 			print colored("To complete set and use screen right now, issue the following command: \n", "bold cyan");
 			print colored("\tsource /etc/bashrc\n", "bold green");
 			print colored("screen is now ready to use with your smoothie.\n", "bold cyan");
@@ -44,14 +44,14 @@ given ($cwd) {
 		chomp($ans);
 		if ($ans =~ /^[Yy](?:es)?$/) {
 			print colored("Creating mod directory....\n", "bold cyan");
-			system("/bin/mkdir -p $modsa_dir/screen") unless (-d "$modsa_dir/htop");
+			system("/bin/mkdir -p $modsa_dir/screen") unless (-d "$modsa_dir/screen");
 			print colored("Copying files....\n", "bold cyan");
 			system("/bin/cp -rf * $modsa_dir/screen/");
 			print colored("Setting up symlinks....\n", "bold cyan");
 			chdir("$modsa_dir/screen/bin");
-			system("/bin/ln -snf screen.$arch htop");
+			system("/bin/ln -snf screen.$arch screen");
 			chdir($mods_dir);
-			system("/bin/ln -snf ../mods-available/screen htop");
+			system("/bin/ln -snf ../mods-available/screen screen");
 			print colored("To complete set and use screen right now, issue the following command: \n", "bold cyan");
 			print colored("\tsource /etc/bashrc\n", "bold green");
 			print colored("screen is now ready to use with your smoothie.\n", "bold cyan");
@@ -66,9 +66,9 @@ given ($cwd) {
 		if ($ans =~ /^[Yy](?:es)?$/) {
 			print colored("Setting up symlinks....\n", "bold cyan");
 			chdir("$modsa_dir/screen/bin");
-			system("/bin/ln -snf screen.$arch htop");
+			system("/bin/ln -snf screen.$arch screen");
 			chdir($mods_dir);
-			system("/bin/ln -snf ../mods-available/screen htop");
+			system("/bin/ln -snf ../mods-available/screen screen");
 			print colored("To complete set and use screen right now, issue the following command: \n", "bold cyan");
 			print colored("\tsource /etc/bashrc\n", "bold green");
 			print colored("screen is now ready to use with your smoothie.\n", "bold cyan");
