@@ -6,7 +6,7 @@ use warnings;
 use Term::ANSIColor;
 
 print color("bold cyan");
-print << END;
+print <<END;
 This script will disable the screen mod.  If you would like to completely 
 remove it from your system, remove the following directory:
 END
