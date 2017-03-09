@@ -1,5 +1,5 @@
 MOD_NAME=screen
-MOD_VERSION=0.0.1
+MOD_VERSION=0.0.2
 SCREEN_VERSION=4.5.1
 MOD_LONG_NAME="[3.1] screen v${MOD_VERSION}"
 MOD_INFO="screen for Smoothwall Express"
